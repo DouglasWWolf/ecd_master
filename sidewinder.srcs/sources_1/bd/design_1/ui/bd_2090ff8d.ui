@@ -16,14 +16,14 @@ preplace inst request_mgr_core -pg 1 -lvl 3 -x 690 -y 100 -defaultsOSRD -pinDir 
 preplace inst data_request_fifo -pg 1 -lvl 2 -x 440 -y 60 -swap {0 1 2 3 4 5 6 7 9 8} -defaultsOSRD -pinDir S_AXIS left -pinY S_AXIS 0L -pinDir M_AXIS right -pinY M_AXIS 40R -pinDir s_axis_aresetn left -pinY s_axis_aresetn 40L -pinDir s_axis_aclk left -pinY s_axis_aclk 20L
 preplace inst axis_256_to_32 -pg 1 -lvl 1 -x 170 -y 60 -defaultsOSRD -pinDir AXIS_RX left -pinY AXIS_RX 0L -pinDir AXIS_TX right -pinY AXIS_TX 0R -pinDir clk left -pinY clk 40L
 preplace inst request_manager_reset -pg 1 -lvl 1 -x 170 -y 240 -defaultsOSRD -pinDir dest_clk left -pinY dest_clk 0L -pinDir dest_arst right -pinY dest_arst 0R -pinDir src_arst left -pinY src_arst 20L
-preplace netloc qsfp_data_user_clk_out 1 0 3 40 180 300 180 NJ
+preplace netloc qsfp_data_user_clk_out 1 0 3 20 180 300 180 NJ
 preplace netloc request_manager_reset_dest_arst 1 1 2 320 200 NJ
 preplace netloc src_arst_1 1 0 1 NJ 260
-preplace netloc data_response_fifo_M_AXIS 1 0 3 NJ 160 NJ 160 NJ
-preplace netloc request_manager_AXIS_TX 1 3 1 N 100
-preplace netloc data_request_fifo_M_AXIS 1 2 1 N 100
 preplace netloc Conn1 1 0 1 NJ 60
 preplace netloc axis_256_to_32_AXIS_TX 1 1 1 N 60
+preplace netloc data_request_fifo_M_AXIS 1 2 1 N 100
+preplace netloc data_response_fifo_M_AXIS 1 0 3 NJ 160 NJ 160 NJ
+preplace netloc request_manager_AXIS_TX 1 3 1 N 100
 levelinfo -pg 1 0 170 440 690 840
 pagesize -pg 1 -db -bbox -sgen -110 0 950 320
 ",
@@ -54,4 +54,4 @@ levelinfo -pg 1 0 220 500 640
 pagesize -pg 1 -db -bbox -sgen -150 -80 740 330
 "
 }
-
+0
