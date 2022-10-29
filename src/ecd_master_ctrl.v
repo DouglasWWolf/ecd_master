@@ -17,6 +17,9 @@ module ecd_master_ctrl
 (
     input clk, resetn,
 
+    // Interrupt request signals for the ping-pong buffers
+    output IRQ_PPB0, IRQ_PPB1,
+
     //================== This is an AXI4-Lite slave interface ==================
         
     // "Specify write address"              -- Master --    -- Slave --
@@ -182,20 +185,34 @@ module ecd_master_ctrl
     // When either of these bits goes high, the corresponding bit in ppb_ready goes high
     reg[1:0] signal_ppb_ready;
 
+    // This is the state of the state machine that places read requests onto the AR channel
+    reg[3:0] fsm_state;
+
+    // This will be high when we are waiting to be told to start performing AXI reads 
+    wire fsm_idle = (fsm_state == 0);
+
     // Burst parameters never change.  Burst type is INCR
     assign M_AXI_ARSIZE  = $clog2(M_AXI_DATA_BYTES);
     assign M_AXI_ARLEN   = BEATS_PER_BURST - 1;
     assign M_AXI_ARBURST = 1;
 
     // The AXI-Stream output is driven directly from the AXI Master interface    
-    assign AXIS_TX_TVALID = M_AXI_RVALID;
-    assign M_AXI_RREADY   = AXIS_TX_TREADY;
+    assign AXIS_TX_TVALID = M_AXI_RVALID & ~fsm_idle;
+    
+    // We're ready to receive data from the PCI bus if the FIFO is ready for data or
+    // if we're idle.   If we're idle, the data is just thrown away
+    assign M_AXI_RREADY = AXIS_TX_TREADY | fsm_idle;
 
     // We drive AXIS_TX_TDATA directly from M_AXI_RDATA, but we need to put the bytes
     // back in their original order (The PCI bridge delivers them to us in little-endian)
     genvar x;
     for (x=0; x<64; x=x+1) assign AXIS_TX_TDATA[x*8+7:x*8] = M_AXI_RDATA[(63-x)*8+7:(63-x)*8];
     
+    // The interrupt request lines to signal when a ping-pong buffer is empty
+    reg[1:0] irq_ppb;
+    assign IRQ_PPB0 = irq_ppb[0];
+    assign IRQ_PPB1 = irq_ppb[1];
+
     //==========================================================================
     // World's simplest state machine for handling write requests
     //==========================================================================
@@ -284,12 +301,14 @@ module ecd_master_ctrl
     // This state machine places read-requests on the AR channel of the AXI
     // Master bus
     //==========================================================================
-    reg[3:0]  fsm_state;
     reg       ppb_index;
     reg[31:0] blocks_remaining;
     //==========================================================================
 
     always @(posedge clk) begin
+
+        // When an interrupt-request line is raised, it should only strobe high for one cycle
+        irq_ppb <= 0;
 
         // Watch for the signals that tell us that a ping-pong buffer has been loaded with data
         if (signal_ppb_ready[0]) ppb_ready[0] <= 1;
@@ -302,6 +321,7 @@ module ecd_master_ctrl
 
         else case(fsm_state)
 
+        // Here we're idle, waiting to be told to start fetching data
         0:  if (start_fetching_data) begin
                 ppb_ready <= -1;
                 ppb_index <= 0;
@@ -332,9 +352,10 @@ module ecd_master_ctrl
         // If our read-request was accepted...
         2:  if (M_AXI_ARREADY & M_AXI_ARVALID) begin
                 if (blocks_remaining == 1) begin
-                    M_AXI_ARVALID    <= 0;
-                    ppb_index        <= ~ppb_index;
-                    fsm_state        <= 1;
+                    M_AXI_ARVALID      <= 0;
+                    irq_ppb[ppb_index] <= 1;
+                    ppb_index          <= ~ppb_index;
+                    fsm_state          <= 1;
                 end else begin
                     M_AXI_ARADDR     <= M_AXI_ARADDR + BYTES_PER_BURST;
                     M_AXI_ARVALID    <= 1;
