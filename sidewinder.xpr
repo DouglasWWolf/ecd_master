@@ -194,20 +194,20 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_restart_manager_0_0/design_1_restart_manager_0_0.xci">
-          <Proxy FileSetName="design_1_restart_manager_0_0"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_axis_data_fifo_0_1/design_1_axis_data_fifo_0_1.xci">
+          <Proxy FileSetName="design_1_axis_data_fifo_0_1"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_ecd_master_ctrl_0_0/design_1_ecd_master_ctrl_0_0.xci">
           <Proxy FileSetName="design_1_ecd_master_ctrl_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_xpm_cdc_gen_0_0/design_1_xpm_cdc_gen_0_0.xci">
-          <Proxy FileSetName="design_1_xpm_cdc_gen_0_0"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_restart_manager_0_0/design_1_restart_manager_0_0.xci">
+          <Proxy FileSetName="design_1_restart_manager_0_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_axis_slice_0_0/design_1_axis_slice_0_0.xci">
           <Proxy FileSetName="design_1_axis_slice_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_axis_data_fifo_0_1/design_1_axis_data_fifo_0_1.xci">
-          <Proxy FileSetName="design_1_axis_data_fifo_0_1"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_xpm_cdc_gen_0_0/design_1_xpm_cdc_gen_0_0.xci">
+          <Proxy FileSetName="design_1_xpm_cdc_gen_0_0"/>
         </CompFileExtendedInfo>
       </File>
       <File Path="$PGENDIR/sources_1/bd/design_1/hdl/design_1_wrapper.v">
