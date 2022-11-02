@@ -22,21 +22,21 @@ preplace inst axi4_master_plug -pg 1 -lvl 2 -x 370 -y 220 -defaultsOSRD -pinDir 
 preplace inst axi4_lite_remapper -pg 1 -lvl 1 -x 140 -y 140 -defaultsOSRD -pinDir M_AXI right -pinY M_AXI 20R -pinDir S_AXI left -pinY S_AXI 0L -pinDir clk left -pinY clk 20L
 preplace netloc aurora_core_channel_up 1 3 2 930 360 NJ
 preplace netloc aurora_core_mmcm_not_locked_out 1 3 1 NJ 200
-preplace netloc axi_chip2chip_aurora_reset_pb 1 3 1 N 260
-preplace netloc axi_chip2chip_aurora_pma_init_out 1 3 1 N 280
-preplace netloc axi_chip2chip_axi_c2c_link_status_out 1 3 2 NJ 380 NJ
-preplace netloc aurora_init_clk_1 1 0 4 20 220 260 280 480 440 950
 preplace netloc aurora_core_user_clk_out 1 3 1 NJ 240
-preplace netloc s_aresetn_1 1 0 3 NJ 380 NJ 380 NJ
+preplace netloc aurora_init_clk_1 1 0 4 20 220 260 280 480 440 950
 preplace netloc aurora_pma_init_in_1 1 0 3 NJ 360 NJ 360 NJ
-preplace netloc GT_DIFF_REFCLK1_0_2 1 4 1 N 100
-preplace netloc aurora_core_GT_SERIAL_TX 1 4 1 N 60
-preplace netloc GT_SERIAL_RX_0_2 1 4 1 N 80
-preplace netloc axi_chip2chip_AXIS_TX 1 3 1 N 120
-preplace netloc aurora_core_USER_DATA_M_AXIS_RX 1 3 1 NJ 140
-preplace netloc axi4_master_plug_0_AXI 1 2 1 N 220
-preplace netloc axi4_lite_remapper_0_M_AXI 1 1 2 NJ 160 N
+preplace netloc axi_chip2chip_aurora_pma_init_out 1 3 1 N 280
+preplace netloc axi_chip2chip_aurora_reset_pb 1 3 1 N 260
+preplace netloc axi_chip2chip_axi_c2c_link_status_out 1 3 2 NJ 380 NJ
+preplace netloc s_aresetn_1 1 0 3 NJ 380 NJ 380 NJ
 preplace netloc Conn1 1 0 1 N 140
+preplace netloc GT_DIFF_REFCLK1_0_2 1 4 1 N 100
+preplace netloc GT_SERIAL_RX_0_2 1 4 1 N 80
+preplace netloc aurora_core_GT_SERIAL_TX 1 4 1 N 60
+preplace netloc aurora_core_USER_DATA_M_AXIS_RX 1 3 1 NJ 140
+preplace netloc axi4_lite_remapper_0_M_AXI 1 1 2 NJ 160 N
+preplace netloc axi4_master_plug_0_AXI 1 2 1 N 220
+preplace netloc axi_chip2chip_AXIS_TX 1 3 1 N 120
 levelinfo -pg 1 0 140 370 710 1150 1370
 pagesize -pg 1 -db -bbox -sgen -190 0 1530 450
 ",
@@ -58,4 +58,4 @@ levelinfo -pg 1 -310 -50 700 930
 pagesize -pg 1 -db -bbox -sgen -420 -80 1070 740
 "
 }
-
+0

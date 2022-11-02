@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x614E43BA852DFE71",
+      "boundary_crc": "0x614E43BAD6AF3373",
       "design_src": "SBD",
       "device": "xczu19eg-ffvc1760-2-i",
       "name": "bd_f60c",
@@ -24,7 +24,7 @@
             "value_src": "default_prop"
           },
           "FREQ_HZ": {
-            "value": "161132813",
+            "value": "402832031",
             "value_src": "default_prop"
           },
           "FREQ_TOLERANCE_HZ": {
@@ -73,7 +73,7 @@
             "value": "0"
           },
           "C_ILA_CLK_FREQ": {
-            "value": "161132813"
+            "value": "402832031"
           },
           "C_INPUT_PIPE_STAGES": {
             "value": "0"

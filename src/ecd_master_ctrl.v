@@ -20,6 +20,9 @@ module ecd_master_ctrl
     // Interrupt request signals for the ping-pong buffers
     output IRQ_PPB0, IRQ_PPB1,
 
+    // This is high when data is being received from the PCI bridge and thrown away
+    output DRAINING,
+
     //================== This is an AXI4-Lite slave interface ==================
         
     // "Specify write address"              -- Master --    -- Slave --
@@ -191,6 +194,9 @@ module ecd_master_ctrl
     // This will be high when we are waiting to be told to start performing AXI reads 
     wire fsm_idle = (fsm_state == 0);
 
+    // For debugging only: this goes high when data DMA'd from the PCI bridge is being thrown away
+    assign DRAINING = fsm_idle & M_AXI_RVALID & M_AXI_RREADY;
+
     // Burst parameters never change.  Burst type is INCR
     assign M_AXI_ARSIZE  = $clog2(M_AXI_DATA_BYTES);
     assign M_AXI_ARLEN   = BEATS_PER_BURST - 1;
@@ -307,8 +313,6 @@ module ecd_master_ctrl
 
     always @(posedge clk) begin
 
-        // When an interrupt-request line is raised, it should only strobe high for one cycle
-        irq_ppb <= 0;
 
         // Watch for the signals that tell us that a ping-pong buffer has been loaded with data
         if (signal_ppb_ready[0]) ppb_ready[0] <= 1;
@@ -353,7 +357,6 @@ module ecd_master_ctrl
         2:  if (M_AXI_ARREADY & M_AXI_ARVALID) begin
                 if (blocks_remaining == 1) begin
                     M_AXI_ARVALID      <= 0;
-                    irq_ppb[ppb_index] <= 1;
                     ppb_index          <= ~ppb_index;
                     fsm_state          <= 1;
                 end else begin
@@ -369,6 +372,36 @@ module ecd_master_ctrl
     //==========================================================================
 
 
+    //==========================================================================
+    // This state machine is responsible for raising an interrupt when the
+    // last block in a buffer has been received.
+    //==========================================================================
+    reg [31:0] blocks_remaining_to_read[0:1];
+    reg        r_buffer_index;
+    //==========================================================================
+    always @(posedge clk) begin
+
+        // When an interrupt-request line is raised, it should only strobe high for one cycle
+        irq_ppb <= 0;
+
+        if (start_fetching_data) begin
+            blocks_remaining_to_read[0] <= axi_register[REG_PPB_SIZE];
+            blocks_remaining_to_read[1] <= axi_register[REG_PPB_SIZE];
+            r_buffer_index              <= 0;            
+        end
+
+        else if (~fsm_idle & M_AXI_RREADY & M_AXI_RVALID & M_AXI_RLAST) begin
+            if (blocks_remaining_to_read[r_buffer_index] == 1) begin
+                blocks_remaining_to_read[r_buffer_index] <= axi_register[REG_PPB_SIZE];
+                irq_ppb[r_buffer_index] <= 1;
+                r_buffer_index <= ~r_buffer_index;
+            end
+            else begin
+                blocks_remaining_to_read[r_buffer_index] <= blocks_remaining_to_read[r_buffer_index] - 1;
+            end
+        end
+    end
+    //==========================================================================
 
 
 
