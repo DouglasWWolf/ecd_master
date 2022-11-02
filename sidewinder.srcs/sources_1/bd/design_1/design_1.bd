@@ -7,7 +7,8 @@
       "name": "design_1",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2021.1"
+      "tool_version": "2021.1",
+      "validated": "true"
     },
     "design_tree": {
       "system_reset_100mhz": "",
@@ -53,12 +54,32 @@
       "clk_100mhz": {
         "mode": "Slave",
         "vlnv_bus_definition": "xilinx.com:interface:diff_clock:1.0",
-        "vlnv": "xilinx.com:interface:diff_clock_rtl:1.0"
+        "vlnv": "xilinx.com:interface:diff_clock_rtl:1.0",
+        "parameters": {
+          "CAN_DEBUG": {
+            "value": "false",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          }
+        }
       },
       "pci_refclk": {
         "mode": "Slave",
         "vlnv_bus_definition": "xilinx.com:interface:diff_clock:1.0",
-        "vlnv": "xilinx.com:interface:diff_clock_rtl:1.0"
+        "vlnv": "xilinx.com:interface:diff_clock_rtl:1.0",
+        "parameters": {
+          "CAN_DEBUG": {
+            "value": "false",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          }
+        }
       },
       "pcie_mgt": {
         "mode": "Master",
@@ -70,6 +91,10 @@
         "vlnv_bus_definition": "xilinx.com:interface:diff_clock:1.0",
         "vlnv": "xilinx.com:interface:diff_clock_rtl:1.0",
         "parameters": {
+          "CAN_DEBUG": {
+            "value": "false",
+            "value_src": "default"
+          },
           "FREQ_HZ": {
             "value": "322265625"
           }
@@ -100,6 +125,10 @@
         "vlnv_bus_definition": "xilinx.com:interface:diff_clock:1.0",
         "vlnv": "xilinx.com:interface:diff_clock_rtl:1.0",
         "parameters": {
+          "CAN_DEBUG": {
+            "value": "false",
+            "value_src": "default"
+          },
           "FREQ_HZ": {
             "value": "322265625"
           }
@@ -109,7 +138,17 @@
     "ports": {
       "pb_rst_n": {
         "type": "rst",
-        "direction": "I"
+        "direction": "I",
+        "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_LOW",
+            "value_src": "default"
+          }
+        }
       },
       "led_pci_link_up": {
         "direction": "O"
@@ -3069,7 +3108,7 @@
                   },
                   "PHASE": {
                     "value": "0",
-                    "value_src": "default_prop"
+                    "value_src": "user_prop"
                   },
                   "CLK_DOMAIN": {
                     "value": "design_1_aurora_64b66b_0_0_user_clk_out",
@@ -3136,7 +3175,7 @@
                   },
                   "PHASE": {
                     "value": "0",
-                    "value_src": "default_prop"
+                    "value_src": "user_prop"
                   },
                   "CLK_DOMAIN": {
                     "value": "design_1_aurora_64b66b_0_0_user_clk_out",
@@ -3203,7 +3242,7 @@
                   },
                   "PHASE": {
                     "value": "0",
-                    "value_src": "default_prop"
+                    "value_src": "user_prop"
                   },
                   "CLK_DOMAIN": {
                     "value": "design_1_aurora_64b66b_0_0_user_clk_out",
@@ -3247,7 +3286,7 @@
                   },
                   "PHASE": {
                     "value": "0",
-                    "value_src": "default_prop"
+                    "value_src": "user_prop"
                   },
                   "CLK_DOMAIN": {
                     "value": "design_1_aurora_64b66b_0_0_user_clk_out",
@@ -3332,7 +3371,7 @@
                   },
                   "PHASE": {
                     "value": "0",
-                    "value_src": "default_prop"
+                    "value_src": "user_prop"
                   },
                   "CLK_DOMAIN": {
                     "value": "design_1_aurora_64b66b_0_0_user_clk_out",
@@ -3399,7 +3438,7 @@
                   },
                   "PHASE": {
                     "value": "0",
-                    "value_src": "default_prop"
+                    "value_src": "user_prop"
                   },
                   "CLK_DOMAIN": {
                     "value": "design_1_aurora_64b66b_0_0_user_clk_out",
@@ -3439,7 +3478,7 @@
                   },
                   "PHASE": {
                     "value": "0",
-                    "value_src": "default_prop"
+                    "value_src": "user_prop"
                   },
                   "CLK_DOMAIN": {
                     "value": "design_1_aurora_64b66b_0_0_user_clk_out",
@@ -4539,7 +4578,7 @@
               },
               "PHASE": {
                 "value": "0",
-                "value_src": "default_prop"
+                "value_src": "user_prop"
               },
               "CLK_DOMAIN": {
                 "value": "design_1_aurora_64b66b_0_0_user_clk_out",
@@ -4606,7 +4645,7 @@
               },
               "PHASE": {
                 "value": "0",
-                "value_src": "default_prop"
+                "value_src": "user_prop"
               },
               "CLK_DOMAIN": {
                 "value": "design_1_aurora_64b66b_0_0_user_clk_out",
@@ -4646,7 +4685,7 @@
               },
               "PHASE": {
                 "value": "0",
-                "value_src": "default_prop"
+                "value_src": "user_prop"
               },
               "CLK_DOMAIN": {
                 "value": "design_1_aurora_64b66b_0_0_user_clk_out",

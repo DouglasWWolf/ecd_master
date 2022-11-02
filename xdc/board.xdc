@@ -68,6 +68,8 @@ set_property  -dict {PACKAGE_PIN B6 IOSTANDARD LVCMOS33} [get_ports pb_rst_n]  ;
 set_property PACKAGE_PIN R33 [get_ports qsfp0_clk_clk_n]
 set_property PACKAGE_PIN R32 [get_ports qsfp0_clk_clk_p]
 
+create_clock -period 3.103 -name clock_qsfp0 [get_ports qsfp0_clk_clk_p]
+
 #
 # QSFP0 transciever connections
 #
@@ -101,6 +103,7 @@ set_property PACKAGE_PIN J37 [get_ports qsfp0_tx_txn[3]]
 set_property PACKAGE_PIN L33 [get_ports qsfp1_clk_clk_n]
 set_property PACKAGE_PIN L32 [get_ports qsfp1_clk_clk_p]
 
+create_clock -period 3.103 -name clock_qsfp1 [get_ports qsfp1_clk_clk_p]
 
 #
 # QSFP1 tranceiver connections
