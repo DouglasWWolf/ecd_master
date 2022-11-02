@@ -107,6 +107,7 @@ preplace netloc GT_DIFF_REFCLK1_0_1 1 6 1 NJ 520
 preplace netloc GT_DIFF_REFCLK1_0_2 1 6 1 NJ 740
 preplace netloc GT_SERIAL_RX_0_1 1 6 1 NJ 500
 preplace netloc GT_SERIAL_RX_0_2 1 6 1 NJ 720
+preplace netloc USER_DATA_S_AXIS_TX_1 1 5 1 N 480
 preplace netloc aurora_64b66b_0_GT_SERIAL_TX 1 6 1 NJ 480
 preplace netloc aurora_core_GT_SERIAL_TX 1 6 1 NJ 700
 preplace netloc data_response_fifo_M_AXIS 1 4 1 N 420
@@ -122,7 +123,6 @@ preplace netloc system_interconnect_M02_AXI 1 1 1 N 180
 preplace netloc system_interconnect_M03_AXI 1 1 1 N 200
 preplace netloc system_interconnect_M04_AXI 1 2 1 690 240n
 preplace netloc traffic_gen_0_M_AXI 1 5 1 N 700
-preplace netloc USER_DATA_S_AXIS_TX_1 1 5 1 N 480
 levelinfo -pg 1 0 210 550 880 1160 1430 1780 2000
 pagesize -pg 1 -db -bbox -sgen -140 0 2160 1000
 ",
