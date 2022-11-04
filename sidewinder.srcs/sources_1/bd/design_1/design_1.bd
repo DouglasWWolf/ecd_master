@@ -24,7 +24,7 @@
         "aurora_core": "",
         "reset_manager": "",
         "reset_inverter": "",
-        "system_ila_0": ""
+        "qsfp_ila": ""
       },
       "data_response_fifo": "",
       "qsfp_c2c": {
@@ -42,6 +42,7 @@
         "request_manager_reset": ""
       },
       "axi_revision": "",
+      "system_ila_0": "",
       "ecd_master_ctrl": ""
     },
     "interface_ports": {
@@ -908,7 +909,12 @@
             "interface_ports": [
               "S_AXI_B",
               "pcie_bridge/S_AXI_B"
-            ]
+            ],
+            "hdl_attributes": {
+              "DEBUG": {
+                "value": "true"
+              }
+            }
           },
           "Conn3": {
             "interface_ports": [
@@ -940,7 +946,15 @@
             "ports": [
               "IRQ0_IN",
               "pcie_interrupt_mgr/IRQ0_IN"
-            ]
+            ],
+            "hdl_attributes": {
+              "DEBUG": {
+                "value": "true"
+              },
+              "MARK_DEBUG": {
+                "value": "true"
+              }
+            }
           },
           "IRQ1_IN_1": {
             "ports": [
@@ -953,7 +967,12 @@
             "ports": [
               "IRQ1_IN",
               "pcie_interrupt_mgr/IRQ1_IN"
-            ]
+            ],
+            "hdl_attributes": {
+              "DEBUG": {
+                "value": "true"
+              }
+            }
           },
           "bridge_input_clock_IBUF_DS_ODIV2": {
             "ports": [
@@ -1055,6 +1074,10 @@
             "direction": "O",
             "left": "0",
             "right": "0"
+          },
+          "ext_reset_in": {
+            "type": "rst",
+            "direction": "I"
           }
         },
         "components": {
@@ -1180,14 +1203,17 @@
               }
             }
           },
-          "system_ila_0": {
+          "qsfp_ila": {
             "vlnv": "xilinx.com:ip:system_ila:1.1",
             "xci_name": "design_1_system_ila_0_0",
             "xci_path": "ip/design_1_system_ila_0_0/design_1_system_ila_0_0.xci",
-            "inst_hier_path": "qsfp_data/system_ila_0",
+            "inst_hier_path": "qsfp_data/qsfp_ila",
             "parameters": {
+              "C_DATA_DEPTH": {
+                "value": "2048"
+              },
               "C_MON_TYPE": {
-                "value": "NATIVE"
+                "value": "MIX"
               },
               "C_NUM_MONITOR_SLOTS": {
                 "value": "1"
@@ -1210,6 +1236,13 @@
               "C_SLOT_0_INTF_TYPE": {
                 "value": "xilinx.com:interface:axis_rtl:1.0"
               }
+            },
+            "interface_ports": {
+              "SLOT_0_AXIS": {
+                "mode": "Monitor",
+                "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
+                "vlnv": "xilinx.com:interface:axis_rtl:1.0"
+              }
             }
           }
         },
@@ -1223,8 +1256,14 @@
           "Conn2": {
             "interface_ports": [
               "USER_DATA_S_AXIS_TX",
-              "aurora_core/USER_DATA_S_AXIS_TX"
-            ]
+              "aurora_core/USER_DATA_S_AXIS_TX",
+              "qsfp_ila/SLOT_0_AXIS"
+            ],
+            "hdl_attributes": {
+              "DEBUG": {
+                "value": "true"
+              }
+            }
           },
           "GT_DIFF_REFCLK1_0_1": {
             "interface_ports": [
@@ -1250,7 +1289,7 @@
             "ports": [
               "aurora_core/channel_up",
               "channel_up",
-              "system_ila_0/probe0"
+              "qsfp_ila/probe0"
             ],
             "hdl_attributes": {
               "DEBUG": {
@@ -1271,7 +1310,7 @@
             "ports": [
               "aurora_core/user_clk_out",
               "user_clk_out",
-              "system_ila_0/clk"
+              "qsfp_ila/clk"
             ]
           },
           "clock_1": {
@@ -1290,7 +1329,8 @@
           "reset_inverter_Res": {
             "ports": [
               "reset_inverter/Res",
-              "sys_resetn_out"
+              "sys_resetn_out",
+              "qsfp_ila/resetn"
             ]
           },
           "reset_manager_pma_init_out": {
@@ -3405,7 +3445,12 @@
             "interface_ports": [
               "AXIS_TX",
               "request_mgr_core/AXIS_TX"
-            ]
+            ],
+            "hdl_attributes": {
+              "DEBUG": {
+                "value": "true"
+              }
+            }
           }
         },
         "nets": {
@@ -3688,6 +3733,75 @@
                 "value_src": "constant"
               }
             }
+          }
+        }
+      },
+      "system_ila_0": {
+        "vlnv": "xilinx.com:ip:system_ila:1.1",
+        "xci_name": "design_1_system_ila_0_1",
+        "xci_path": "ip/design_1_system_ila_0_1/design_1_system_ila_0_1.xci",
+        "inst_hier_path": "system_ila_0",
+        "parameters": {
+          "C_DATA_DEPTH": {
+            "value": "4096"
+          },
+          "C_MON_TYPE": {
+            "value": "MIX"
+          },
+          "C_NUM_MONITOR_SLOTS": {
+            "value": "1"
+          },
+          "C_NUM_OF_PROBES": {
+            "value": "2"
+          },
+          "C_PROBE0_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE1_TYPE": {
+            "value": "0"
+          },
+          "C_SLOT_0_APC_EN": {
+            "value": "0"
+          },
+          "C_SLOT_0_AXI_AR_SEL_DATA": {
+            "value": "1"
+          },
+          "C_SLOT_0_AXI_AR_SEL_TRIG": {
+            "value": "1"
+          },
+          "C_SLOT_0_AXI_AW_SEL_DATA": {
+            "value": "1"
+          },
+          "C_SLOT_0_AXI_AW_SEL_TRIG": {
+            "value": "1"
+          },
+          "C_SLOT_0_AXI_B_SEL_DATA": {
+            "value": "1"
+          },
+          "C_SLOT_0_AXI_B_SEL_TRIG": {
+            "value": "1"
+          },
+          "C_SLOT_0_AXI_R_SEL_DATA": {
+            "value": "1"
+          },
+          "C_SLOT_0_AXI_R_SEL_TRIG": {
+            "value": "1"
+          },
+          "C_SLOT_0_AXI_W_SEL_DATA": {
+            "value": "1"
+          },
+          "C_SLOT_0_AXI_W_SEL_TRIG": {
+            "value": "1"
+          },
+          "C_SLOT_0_INTF_TYPE": {
+            "value": "xilinx.com:interface:aximm_rtl:1.0"
+          }
+        },
+        "interface_ports": {
+          "SLOT_0_AXI": {
+            "mode": "Monitor",
+            "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
+            "vlnv": "xilinx.com:interface:aximm_rtl:1.0"
           }
         }
       },
@@ -4362,7 +4476,15 @@
         "interface_ports": [
           "qsfp_data/USER_DATA_S_AXIS_TX",
           "request_manager/AXIS_TX"
-        ]
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "aurora_64b66b_0_GT_SERIAL_TX": {
         "interface_ports": [
@@ -4391,8 +4513,17 @@
       "ecd_master_ctrl_M_AXI": {
         "interface_ports": [
           "ecd_master_ctrl/M_AXI",
-          "pcie_axi_bridge/S_AXI_B"
-        ]
+          "pcie_axi_bridge/S_AXI_B",
+          "system_ila_0/SLOT_0_AXI"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "pci_refclk_1": {
         "interface_ports": [
@@ -4459,14 +4590,29 @@
       "ecd_master_ctrl_IRQ_PPB0": {
         "ports": [
           "ecd_master_ctrl/IRQ_PPB0",
-          "pcie_axi_bridge/IRQ0_IN"
-        ]
+          "pcie_axi_bridge/IRQ0_IN",
+          "system_ila_0/probe0"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "ecd_master_ctrl_IRQ_PPB1": {
         "ports": [
           "ecd_master_ctrl/IRQ_PPB1",
-          "pcie_axi_bridge/IRQ1_IN"
-        ]
+          "pcie_axi_bridge/IRQ1_IN",
+          "system_ila_0/probe1"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "ext_reset_in_0_1": {
         "ports": [
@@ -4481,6 +4627,7 @@
           "data_response_fifo/s_axis_aclk",
           "restart_manager/clk",
           "axi_revision/AXI_ACLK",
+          "system_ila_0/clk",
           "ecd_master_ctrl/clk"
         ]
       },
@@ -4563,7 +4710,9 @@
           "pcie_axi_bridge/axi_aresetn",
           "system_interconnect/aresetn",
           "restart_manager/resetn",
-          "axi_revision/AXI_ARESETN"
+          "axi_revision/AXI_ARESETN",
+          "system_ila_0/resetn",
+          "qsfp_data/ext_reset_in"
         ]
       }
     },

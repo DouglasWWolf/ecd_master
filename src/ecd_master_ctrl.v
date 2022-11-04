@@ -235,7 +235,7 @@ module ecd_master_ctrl
             axi_register[REG_PPB0L   ] <= 32'hC000_0000;
             axi_register[REG_PPB1H   ] <= 0;
             axi_register[REG_PPB1L   ] <= 32'hC001_0000;
-            axi_register[REG_PPB_SIZE] <= 32;
+            axi_register[REG_PPB_SIZE] <= 8;
 
 
         // If we're not in reset, and a write-request has occured...        
@@ -330,7 +330,6 @@ module ecd_master_ctrl
                 ppb_ready <= -1;
                 ppb_index <= 0;
                 fsm_state <= 1;
-
             end
 
         // If this ping-pong buffer is loaded with data...
@@ -356,13 +355,14 @@ module ecd_master_ctrl
         // If our read-request was accepted...
         2:  if (M_AXI_ARREADY & M_AXI_ARVALID) begin
                 if (blocks_remaining == 1) begin
-                    M_AXI_ARVALID      <= 0;
-                    ppb_index          <= ~ppb_index;
-                    fsm_state          <= 1;
+                    M_AXI_ARVALID        <= 0;
+                    ppb_ready[ppb_index] <= 0;
+                    ppb_index            <= ~ppb_index;
+                    fsm_state            <= 1;
                 end else begin
-                    M_AXI_ARADDR     <= M_AXI_ARADDR + BYTES_PER_BURST;
-                    M_AXI_ARVALID    <= 1;
-                    blocks_remaining <= blocks_remaining - 1;
+                    M_AXI_ARADDR         <= M_AXI_ARADDR + BYTES_PER_BURST;
+                    M_AXI_ARVALID        <= 1;
+                    blocks_remaining     <= blocks_remaining - 1;
                 end
             end
 
@@ -376,7 +376,7 @@ module ecd_master_ctrl
     // This state machine is responsible for raising an interrupt when the
     // last block in a buffer has been received.
     //==========================================================================
-    reg [31:0] blocks_remaining_to_read[0:1];
+    reg [31:0] blocks_remaining_to_read;
     reg        r_buffer_index;
     //==========================================================================
     always @(posedge clk) begin
@@ -384,21 +384,33 @@ module ecd_master_ctrl
         // When an interrupt-request line is raised, it should only strobe high for one cycle
         irq_ppb <= 0;
 
+        // If we've just been told that "data fetching" (i.e., DMA transfers) has begun,
+        // initialize our variables 
         if (start_fetching_data) begin
-            blocks_remaining_to_read[0] <= axi_register[REG_PPB_SIZE];
-            blocks_remaining_to_read[1] <= axi_register[REG_PPB_SIZE];
-            r_buffer_index              <= 0;            
+            blocks_remaining_to_read <= axi_register[REG_PPB_SIZE];
+            r_buffer_index           <= 0;            
         end
 
+        // If we're fetching data, and this is a valid data cycle from the PCI bridge, and 
+        // this is the last cycle of a block...
         else if (~fsm_idle & M_AXI_RREADY & M_AXI_RVALID & M_AXI_RLAST) begin
-            if (blocks_remaining_to_read[r_buffer_index] == 1) begin
-                blocks_remaining_to_read[r_buffer_index] <= axi_register[REG_PPB_SIZE];
+            
+            // If this was the last block that was available in this buffer...
+            if (blocks_remaining_to_read == 1) begin
+                
+                // Reload our counter of blocks remaining to be read
+                blocks_remaining_to_read <= axi_register[REG_PPB_SIZE];
+                
+                // Raise the interrupt that says "this buffer is empty"
                 irq_ppb[r_buffer_index] <= 1;
+                
+                // Switch to the other buffer
                 r_buffer_index <= ~r_buffer_index;
             end
-            else begin
-                blocks_remaining_to_read[r_buffer_index] <= blocks_remaining_to_read[r_buffer_index] - 1;
-            end
+
+            // Otherwise, if this was not the last block available in the buffer,
+            // just keep track of how many blocks are left in this buffer
+            else blocks_remaining_to_read <= blocks_remaining_to_read - 1;
         end
     end
     //==========================================================================
