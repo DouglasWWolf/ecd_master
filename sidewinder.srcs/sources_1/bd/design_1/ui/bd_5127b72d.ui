@@ -7,52 +7,52 @@
    "No Loops_ExpandedHierarchyInLayout":"",
    "No Loops_Layout":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
-preplace port qsfp_clk -pg 1 -lvl 0 -x 0 -y 540 -defaultsOSRD
-preplace port qsfp_tx -pg 1 -lvl 5 -x 1330 -y 440 -defaultsOSRD
-preplace port qsfp_rx -pg 1 -lvl 5 -x 1330 -y 460 -defaultsOSRD -right
-preplace port USER_DATA_M_AXIS_RX -pg 1 -lvl 5 -x 1330 -y 20 -defaultsOSRD
-preplace port USER_DATA_S_AXIS_TX -pg 1 -lvl 0 -x 0 -y 700 -defaultsOSRD
-preplace port S_AXI_QSFP_STATUS -pg 1 -lvl 0 -x 0 -y 80 -defaultsOSRD
-preplace port port-id_init_clk -pg 1 -lvl 0 -x 0 -y 560 -defaultsOSRD
-preplace port port-id_reset_in -pg 1 -lvl 0 -x 0 -y 620 -defaultsOSRD
-preplace port port-id_channel_up -pg 1 -lvl 5 -x 1330 -y 420 -defaultsOSRD
-preplace port port-id_user_clk_out -pg 1 -lvl 5 -x 1330 -y 500 -defaultsOSRD
-preplace port port-id_resetn -pg 1 -lvl 0 -x 0 -y 720 -defaultsOSRD
-preplace port port-id_clk -pg 1 -lvl 0 -x 0 -y 100 -defaultsOSRD
-preplace portBus sys_resetn_out -pg 1 -lvl 5 -x 1330 -y 820 -defaultsOSRD
-preplace inst aurora_core -pg 1 -lvl 2 -x 550 -y 160 -swap {17 1 2 3 4 5 6 0 8 9 10 11 12 13 14 15 16 7 18 19 20 24 22 23 27 25 26 21 28 29 31 33 32 30 35 34 36 37 38 42 39 40 41} -defaultsOSRD -pinDir USER_DATA_S_AXIS_TX left -pinY USER_DATA_S_AXIS_TX 420L -pinDir USER_DATA_M_AXIS_RX right -pinY USER_DATA_M_AXIS_RX 0R -pinDir GT_DIFF_REFCLK1 left -pinY GT_DIFF_REFCLK1 380L -pinDir CORE_STATUS right -pinY CORE_STATUS 20R -pinDir CORE_STATUS.channel_up right -pinY CORE_STATUS.channel_up 40R -pinDir CORE_STATUS.gt_pll_lock right -pinY CORE_STATUS.gt_pll_lock 60R -pinDir CORE_STATUS.hard_err right -pinY CORE_STATUS.hard_err 80R -pinDir CORE_STATUS.lane_up right -pinY CORE_STATUS.lane_up 100R -pinDir CORE_STATUS.mmcm_not_locked_out right -pinY CORE_STATUS.mmcm_not_locked_out 120R -pinDir CORE_STATUS.soft_err right -pinY CORE_STATUS.soft_err 140R -pinDir CORE_CONTROL left -pinY CORE_CONTROL 400L -pinDir GT_SERIAL_TX right -pinY GT_SERIAL_TX 280R -pinDir GT_SERIAL_RX right -pinY GT_SERIAL_RX 300R -pinDir QPLL_CONTROL_OUT right -pinY QPLL_CONTROL_OUT 160R -pinDir reset_pb left -pinY reset_pb 460L -pinDir pma_init left -pinY pma_init 480L -pinDir tx_out_clk right -pinY tx_out_clk 320R -pinDir init_clk left -pinY init_clk 440L -pinDir link_reset_out right -pinY link_reset_out 360R -pinDir user_clk_out right -pinY user_clk_out 340R -pinDir sync_clk_out right -pinY sync_clk_out 380R -pinDir gt_qpllclk_quad1_out right -pinY gt_qpllclk_quad1_out 400R -pinDir gt_qpllrefclk_quad1_out right -pinY gt_qpllrefclk_quad1_out 420R -pinDir sys_reset_out right -pinY sys_reset_out 500R -pinDir gt_reset_out right -pinY gt_reset_out 440R -pinDir gt_refclk1_out right -pinY gt_refclk1_out 460R -pinBusDir gt_powergood right -pinBusY gt_powergood 480R
-preplace inst reset_manager -pg 1 -lvl 1 -x 170 -y 600 -defaultsOSRD -pinDir clock left -pinY clock 0L -pinDir reset_in left -pinY reset_in 20L -pinDir reset_pb_out right -pinY reset_pb_out 20R -pinDir pma_init_out right -pinY pma_init_out 40R
-preplace inst reset_inverter -pg 1 -lvl 2 -x 550 -y 920 -defaultsOSRD -pinBusDir Op1 right -pinBusY Op1 0R -pinBusDir Res right -pinBusY Res 20R
+preplace port qsfp_clk -pg 1 -lvl 0 -x 0 -y 600 -defaultsOSRD
+preplace port qsfp_tx -pg 1 -lvl 4 -x 1150 -y 460 -defaultsOSRD
+preplace port qsfp_rx -pg 1 -lvl 4 -x 1150 -y 480 -defaultsOSRD -right
+preplace port USER_DATA_M_AXIS_RX -pg 1 -lvl 4 -x 1150 -y 20 -defaultsOSRD
+preplace port USER_DATA_S_AXIS_TX -pg 1 -lvl 0 -x 0 -y 580 -defaultsOSRD
+preplace port S_AXI_QSFP_STATUS -pg 1 -lvl 0 -x 0 -y 100 -defaultsOSRD
+preplace port port-id_init_clk -pg 1 -lvl 0 -x 0 -y 620 -defaultsOSRD
+preplace port port-id_reset_in -pg 1 -lvl 0 -x 0 -y 680 -defaultsOSRD
+preplace port port-id_channel_up -pg 1 -lvl 4 -x 1150 -y 40 -defaultsOSRD
+preplace port port-id_user_clk_out -pg 1 -lvl 4 -x 1150 -y 560 -defaultsOSRD
+preplace port port-id_resetn -pg 1 -lvl 0 -x 0 -y 140 -defaultsOSRD
+preplace port port-id_clk -pg 1 -lvl 0 -x 0 -y 120 -defaultsOSRD
+preplace portBus sys_resetn_out -pg 1 -lvl 4 -x 1150 -y 820 -defaultsOSRD
+preplace inst aurora_core -pg 1 -lvl 2 -x 550 -y 200 -swap {0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 24 22 23 27 25 26 21 28 29 31 33 32 30 34 36 35 37 38 42 39 40 41} -defaultsOSRD -pinDir USER_DATA_S_AXIS_TX left -pinY USER_DATA_S_AXIS_TX 380L -pinDir USER_DATA_M_AXIS_RX right -pinY USER_DATA_M_AXIS_RX 0R -pinDir GT_DIFF_REFCLK1 left -pinY GT_DIFF_REFCLK1 400L -pinDir CORE_STATUS right -pinY CORE_STATUS 20R -pinDir CORE_STATUS.channel_up right -pinY CORE_STATUS.channel_up 40R -pinDir CORE_STATUS.gt_pll_lock right -pinY CORE_STATUS.gt_pll_lock 60R -pinDir CORE_STATUS.hard_err right -pinY CORE_STATUS.hard_err 80R -pinDir CORE_STATUS.lane_up right -pinY CORE_STATUS.lane_up 100R -pinDir CORE_STATUS.mmcm_not_locked_out right -pinY CORE_STATUS.mmcm_not_locked_out 120R -pinDir CORE_STATUS.soft_err right -pinY CORE_STATUS.soft_err 140R -pinDir CORE_CONTROL left -pinY CORE_CONTROL 420L -pinDir GT_SERIAL_TX right -pinY GT_SERIAL_TX 260R -pinDir GT_SERIAL_RX right -pinY GT_SERIAL_RX 280R -pinDir QPLL_CONTROL_OUT right -pinY QPLL_CONTROL_OUT 160R -pinDir reset_pb left -pinY reset_pb 460L -pinDir pma_init left -pinY pma_init 480L -pinDir tx_out_clk right -pinY tx_out_clk 300R -pinDir init_clk left -pinY init_clk 440L -pinDir link_reset_out right -pinY link_reset_out 320R -pinDir user_clk_out right -pinY user_clk_out 360R -pinDir sync_clk_out right -pinY sync_clk_out 340R -pinDir gt_qpllclk_quad1_out right -pinY gt_qpllclk_quad1_out 380R -pinDir gt_qpllrefclk_quad1_out right -pinY gt_qpllrefclk_quad1_out 400R -pinDir sys_reset_out right -pinY sys_reset_out 480R -pinDir gt_reset_out right -pinY gt_reset_out 420R -pinDir gt_refclk1_out right -pinY gt_refclk1_out 440R -pinBusDir gt_powergood right -pinBusY gt_powergood 460R
+preplace inst reset_manager -pg 1 -lvl 1 -x 170 -y 660 -defaultsOSRD -pinDir clock left -pinY clock 0L -pinDir reset_in left -pinY reset_in 20L -pinDir reset_pb_out right -pinY reset_pb_out 0R -pinDir pma_init_out right -pinY pma_init_out 20R
+preplace inst reset_inverter -pg 1 -lvl 2 -x 550 -y 1040 -defaultsOSRD -pinBusDir Op1 left -pinBusY Op1 0L -pinBusDir Res right -pinBusY Res 0R
 preplace inst qsfp_ila -pg 1 -lvl 2 -x 550 -y 780 -swap {0 1 2 3 4 6 5 7} -defaultsOSRD -pinDir SLOT_0_AXIS left -pinY SLOT_0_AXIS 0L -pinDir clk right -pinY clk 20R -pinBusDir probe0 right -pinBusY probe0 0R -pinDir resetn right -pinY resetn 40R
-preplace inst constant_0 -pg 1 -lvl 3 -x 890 -y 340 -defaultsOSRD -pinBusDir dout right -pinBusY dout 0R
-preplace inst qsfp_status -pg 1 -lvl 4 -x 1160 -y 80 -swap {0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 28 29 22 23 24 25 21 27 26} -defaultsOSRD -pinDir S_AXI left -pinY S_AXI 0L -pinDir clk left -pinY clk 20L -pinDir resetn left -pinY resetn 260L -pinDir ss_channel_up left -pinY ss_channel_up 280L -pinDir ss_gt_pll_lock left -pinY ss_gt_pll_lock 140L -pinDir ss_hard_err left -pinY ss_hard_err 160L -pinBusDir ss_lane_up left -pinBusY ss_lane_up 180L -pinDir ss_mcmm_not_locked_out left -pinY ss_mcmm_not_locked_out 200L -pinDir ss_soft_err left -pinY ss_soft_err 120L -pinDir ss_c2c_link_status left -pinY ss_c2c_link_status 240L -pinDir ss_c2c_link_error left -pinY ss_c2c_link_error 220L
-preplace netloc aurora_64b66b_0_channel_up 1 2 3 780 400 1010 420 NJ
-preplace netloc aurora_64b66b_0_sys_reset_out 1 2 1 760 660n
-preplace netloc aurora_64b66b_0_user_clk_out 1 2 3 800 500 N 500 NJ
-preplace netloc aurora_core_gt_pll_lock 1 2 2 N 220 N
-preplace netloc aurora_core_hard_err 1 2 2 N 240 N
-preplace netloc aurora_core_lane_up 1 2 2 N 260 N
-preplace netloc aurora_core_mmcm_not_locked_out 1 2 2 N 280 N
-preplace netloc aurora_core_soft_err 1 2 2 800 200 N
-preplace netloc clk_1 1 0 4 NJ 100 NJ 100 NJ 100 N
-preplace netloc clock_1 1 0 2 40 520 300
-preplace netloc constant_0_dout 1 3 1 970 300n
-preplace netloc reset_in_1 1 0 1 NJ 620
-preplace netloc reset_inverter_Res 1 2 3 800 820 N 820 NJ
-preplace netloc reset_manager_pma_init_out 1 1 1 N 640
-preplace netloc reset_manager_reset_pb_out 1 1 1 N 620
-preplace netloc resetn_1 1 0 4 NJ 720 NJ 720 NJ 720 990
-preplace netloc Conn1 1 2 3 800J 60 970 20 NJ
-preplace netloc Conn2 1 0 2 NJ 700 320
-preplace netloc Conn3 1 0 4 NJ 80 NJ 80 NJ 80 N
-preplace netloc GT_DIFF_REFCLK1_0_1 1 0 2 NJ 540 NJ
-preplace netloc GT_SERIAL_RX_0_1 1 2 3 NJ 460 N 460 NJ
-preplace netloc aurora_64b66b_0_GT_SERIAL_TX 1 2 3 NJ 440 N 440 NJ
-levelinfo -pg 1 0 170 550 890 1160 1330
-pagesize -pg 1 -db -bbox -sgen -220 0 1560 1000
+preplace inst constant_0 -pg 1 -lvl 2 -x 550 -y 920 -defaultsOSRD -pinBusDir dout right -pinBusY dout 0R
+preplace inst qsfp_status -pg 1 -lvl 3 -x 980 -y 100 -swap {0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 27 22 23 24 25 26 29 28} -defaultsOSRD -pinDir S_AXI left -pinY S_AXI 0L -pinDir clk left -pinY clk 20L -pinDir resetn left -pinY resetn 40L -pinDir ss_channel_up left -pinY ss_channel_up 260L -pinDir ss_gt_pll_lock left -pinY ss_gt_pll_lock 160L -pinDir ss_hard_err left -pinY ss_hard_err 180L -pinBusDir ss_lane_up left -pinBusY ss_lane_up 200L -pinDir ss_mcmm_not_locked_out left -pinY ss_mcmm_not_locked_out 220L -pinDir ss_soft_err left -pinY ss_soft_err 240L -pinDir ss_c2c_link_status left -pinY ss_c2c_link_status 300L -pinDir ss_c2c_link_error left -pinY ss_c2c_link_error 280L
+preplace netloc aurora_64b66b_0_channel_up 1 2 2 810 40 NJ
+preplace netloc aurora_64b66b_0_sys_reset_out 1 1 2 300 980 770
+preplace netloc aurora_64b66b_0_user_clk_out 1 2 2 790 560 NJ
+preplace netloc aurora_core_gt_pll_lock 1 2 1 N 260
+preplace netloc aurora_core_hard_err 1 2 1 N 280
+preplace netloc aurora_core_lane_up 1 2 1 N 300
+preplace netloc aurora_core_mmcm_not_locked_out 1 2 1 N 320
+preplace netloc aurora_core_soft_err 1 2 1 N 340
+preplace netloc clk_1 1 0 3 NJ 120 NJ 120 NJ
+preplace netloc clock_1 1 0 2 40 560 300
+preplace netloc constant_0_dout 1 2 1 830 380n
+preplace netloc reset_in_1 1 0 1 NJ 680
+preplace netloc reset_inverter_Res 1 2 2 790 820 NJ
+preplace netloc reset_manager_pma_init_out 1 1 1 N 680
+preplace netloc reset_manager_reset_pb_out 1 1 1 N 660
+preplace netloc resetn_1 1 0 3 NJ 140 NJ 140 NJ
+preplace netloc Conn1 1 2 2 770J 20 NJ
+preplace netloc Conn2 1 0 2 NJ 580 320
+preplace netloc Conn3 1 0 3 NJ 100 NJ 100 NJ
+preplace netloc GT_DIFF_REFCLK1_0_1 1 0 2 NJ 600 NJ
+preplace netloc GT_SERIAL_RX_0_1 1 2 2 NJ 480 NJ
+preplace netloc aurora_64b66b_0_GT_SERIAL_TX 1 2 2 NJ 460 NJ
+levelinfo -pg 1 0 170 550 980 1150
+pagesize -pg 1 -db -bbox -sgen -220 0 1380 1100
 ",
-   "No Loops_ScaleFactor":"0.716469",
-   "No Loops_TopLeft":"-216,-6",
+   "No Loops_ScaleFactor":"0.66",
+   "No Loops_TopLeft":"-382,0",
    "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
 preplace port qsfp0_clk -pg 1 -lvl 0 -x -360 -y 150 -defaultsOSRD
