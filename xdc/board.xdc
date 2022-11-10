@@ -3,20 +3,33 @@
 # Pin definitions
 # ---------------------------------------------------------------------------
 
- 
-#######################################
-#  Clocks & system signals
-#######################################
 
-set_property -dict {PACKAGE_PIN  C4  IOSTANDARD LVDS_25} [ get_ports clk_100mhz_clk_p ]
-set_property -dict {PACKAGE_PIN  C3  IOSTANDARD LVDS_25} [ get_ports clk_100mhz_clk_n ]
+#===============================================================================
+#                                False paths
+#===============================================================================
+
+#
+# The status signals of the QSFP data-channel
+#
+set_false_path -through [get_nets */qsfp_data/qsfp_status/ss_*]
+set_false_path -through [get_nets  */qsfp_c2c/qsfp_status/ss_*]
+ 
+#===============================================================================
+#                            Clocks & system signals
+#===============================================================================
+
+set_property -dict {PACKAGE_PIN C4 IOSTANDARD LVDS_25} [ get_ports clk_100mhz_clk_p ]
+set_property -dict {PACKAGE_PIN C3 IOSTANDARD LVDS_25} [ get_ports clk_100mhz_clk_n ]
 
 set_property -dict {PACKAGE_PIN AH12} [ get_ports pci_refclk_clk_p ] ;# PCIE endpoint refclk#2
 set_property -dict {PACKAGE_PIN AH11} [ get_ports pci_refclk_clk_n ]  
 
+
 create_clock -period 10.000 -name sysclk100   [get_ports clk_100mhz_clk_p]
+set_clock_groups -name group_sysclk100 -asynchronous -group [get_clocks sysclk100]
+
 create_clock -period 10.000 -name pcie_sysclk [get_ports pci_refclk_clk_p]
-set_clock_groups -name sys_clk_100 -asynchronous -group [get_clocks sysclk100]
+set_clock_groups -name group_pcie_sysclk -asynchronous -group [get_clocks pcie_sysclk]
 
 # Disable timing analysis for these pins
 set_disable_timing [get_ports pb_rst_n        ]
@@ -67,8 +80,9 @@ set_property  -dict {PACKAGE_PIN B6 IOSTANDARD LVCMOS33} [get_ports pb_rst_n]  ;
 #
 set_property PACKAGE_PIN R33 [get_ports qsfp0_clk_clk_n]
 set_property PACKAGE_PIN R32 [get_ports qsfp0_clk_clk_p]
-
 create_clock -period 3.103 -name clock_qsfp0 [get_ports qsfp0_clk_clk_p]
+set_clock_groups -name group_clock_qsfp0 -asynchronous -group [get_clocks clock_qsfp0]
+
 
 #
 # QSFP0 transciever connections
@@ -102,8 +116,8 @@ set_property PACKAGE_PIN J37 [get_ports qsfp0_tx_txn[3]]
 #
 set_property PACKAGE_PIN L33 [get_ports qsfp1_clk_clk_n]
 set_property PACKAGE_PIN L32 [get_ports qsfp1_clk_clk_p]
-
 create_clock -period 3.103 -name clock_qsfp1 [get_ports qsfp1_clk_clk_p]
+set_clock_groups -name group_clock_qsfp1 -asynchronous -group [get_clocks clock_qsfp1]
 
 #
 # QSFP1 tranceiver connections
