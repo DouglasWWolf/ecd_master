@@ -123,14 +123,14 @@ preplace netloc system_interconnect_M01_AXI 1 2 1 N 280
 preplace netloc system_interconnect_M02_AXI 1 1 1 N 380
 preplace netloc system_interconnect_M03_AXI 1 1 1 N 400
 preplace netloc system_interconnect_M04_AXI 1 2 1 830 440n
-preplace netloc traffic_gen_0_M_AXI 1 5 1 N 510
 preplace netloc system_interconnect_M05_AXI 1 2 4 NJ 420 1170J 200 NJ 200 NJ
 preplace netloc system_interconnect_M06_AXI 1 2 4 N 60 1230J 220 NJ 220 1870J
+preplace netloc traffic_gen_0_M_AXI 1 5 1 N 510
 levelinfo -pg 1 0 210 630 1040 1360 1650 2160 2380
 pagesize -pg 1 -db -bbox -sgen -140 0 2540 1060
 ",
-   "No Loops_ScaleFactor":"0.463122",
-   "No Loops_TopLeft":"-134,-227",
+   "No Loops_ScaleFactor":"0.47398",
+   "No Loops_TopLeft":"-135,-207",
    "Reduced Jogs_ExpandedHierarchyInLayout":"",
    "Reduced Jogs_Layout":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
 #  -string -flagsOSRD

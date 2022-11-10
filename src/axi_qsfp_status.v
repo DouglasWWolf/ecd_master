@@ -95,9 +95,9 @@ module axi_qsfp_status #
 
     // Stuff our status signals into a status word
     wire[31:0] status_word;
-    assign status_word[  0] = ss_channel_up;
-    assign status_word[  1] = ss_gt_pll_lock;
-    assign status_word[2:5] = ss_lane_up;
+    assign status_word[3:0] = ss_lane_up;
+    assign status_word[  4] = ss_channel_up;
+    assign status_word[  5] = ss_gt_pll_lock;
     assign status_word[  6] = ss_hard_err;
     assign status_word[  7] = ss_mcmm_not_locked_out;
     assign status_word[  8] = ss_soft_err;
