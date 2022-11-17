@@ -989,7 +989,7 @@
                 "value": "MIX"
               },
               "C_NUM_MONITOR_SLOTS": {
-                "value": "1"
+                "value": "2"
               },
               "C_NUM_OF_PROBES": {
                 "value": "1"
@@ -1008,10 +1008,27 @@
               },
               "C_SLOT_0_INTF_TYPE": {
                 "value": "xilinx.com:interface:axis_rtl:1.0"
+              },
+              "C_SLOT_1_APC_EN": {
+                "value": "0"
+              },
+              "C_SLOT_1_AXI_DATA_SEL": {
+                "value": "1"
+              },
+              "C_SLOT_1_AXI_TRIG_SEL": {
+                "value": "1"
+              },
+              "C_SLOT_1_INTF_TYPE": {
+                "value": "xilinx.com:interface:axis_rtl:1.0"
               }
             },
             "interface_ports": {
               "SLOT_0_AXIS": {
+                "mode": "Monitor",
+                "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
+                "vlnv": "xilinx.com:interface:axis_rtl:1.0"
+              },
+              "SLOT_1_AXIS": {
                 "mode": "Monitor",
                 "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
                 "vlnv": "xilinx.com:interface:axis_rtl:1.0"
@@ -1394,8 +1411,17 @@
           "Conn1": {
             "interface_ports": [
               "USER_DATA_M_AXIS_RX",
-              "aurora_core/USER_DATA_M_AXIS_RX"
-            ]
+              "aurora_core/USER_DATA_M_AXIS_RX",
+              "qsfp_ila/SLOT_1_AXIS"
+            ],
+            "hdl_attributes": {
+              "DEBUG": {
+                "value": "true"
+              },
+              "MARK_DEBUG": {
+                "value": "true"
+              }
+            }
           },
           "Conn2": {
             "interface_ports": [
@@ -3681,7 +3707,12 @@
             "interface_ports": [
               "AXIS_RQ",
               "axis_256_to_32/AXIS_RX"
-            ]
+            ],
+            "hdl_attributes": {
+              "DEBUG": {
+                "value": "true"
+              }
+            }
           },
           "axis_256_to_32_AXIS_TX": {
             "interface_ports": [
@@ -5070,7 +5101,12 @@
         "interface_ports": [
           "qsfp_data/USER_DATA_M_AXIS_RX",
           "request_manager/AXIS_RQ"
-        ]
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "system_interconnect_M00_AXI": {
         "interface_ports": [
